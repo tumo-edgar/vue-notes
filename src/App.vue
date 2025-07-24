@@ -3,10 +3,12 @@
     <h1 class="title">Note App</h1>
 
     <div class="notes">
-      <Card />
+      <Card title="asojdhasidhjb" content="asiudhasijdb askjd askjbd ask" date="21-07-2333" />
     </div>
 
-    <AddButton />
+    <AddButton @click="toggleOpen" />
+
+    <NoteForm v-if="isOpen" @onClose="toggleOpen" />
   </div>
 </template>
 
@@ -14,6 +16,13 @@
   import {ref} from 'vue';
   import AddButton from './components/AddButton.vue';
   import Card from './components/Card.vue';
+  import NoteForm from './components/NoteForm.vue';
+
+  let isOpen = ref(false);
+
+  function toggleOpen(){
+    isOpen.value = !isOpen.value
+  }
 
 </script>
 
