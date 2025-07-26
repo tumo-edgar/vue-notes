@@ -9,14 +9,33 @@
             <p class="title">
                 Title
             </p>
-            <input />
-            <textarea></textarea>
-            <button class="save">Save</button>
+
+            <input v-model="title" />
+
+            <textarea v-model="content" @keydown.enter="$emit('onSave', title, content)"></textarea>
+
+            <button class="save" @click="$emit('onSave', title, content)">Save</button>
         </div>
     </div>
 </template>
 
 <script setup>
+    import {ref, defineProps, onMounted} from 'vue';
+
+    let props = defineProps(['note'])
+
+    let title = ref('')
+    let content = ref('')
+
+
+    onMounted(() => {
+        if(props.note?.title) {
+            title.value = props.note.title
+        }
+        if(props.note?.content) {
+            content.value = props.note.content
+        }
+    })
 
 </script>
 
